@@ -1,0 +1,19 @@
+.banner{
+    position: relative;
+    background-image: url(./img/bg.jpg);
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    padding: 250px 0 200px;
+}
+.title{
+    text-transform: uppercase;
+    line-height: 1.5em;
+    color: rgb(26, 26, 26);
+    font-weight: 800;
+}
+.indice{
+    text-align: justify;
+    color: rgb(26, 26, 26);
+    
+}
