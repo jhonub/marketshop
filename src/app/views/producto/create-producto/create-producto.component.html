@@ -1,0 +1,76 @@
+<ng-template #mdProducto let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Agregar Producto</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formProductos">
+          <div class="form-row">
+              <div class="col-3">
+                <label>Codigo de Barra</label>
+                <input type="text" formControlName="codBar" class="form-control"
+                [ngClass]="{ 'is-invalid': formValidatorStatus && formValidator.codBar.errors }"
+                >
+                <div *ngIf="formValidatorStatus && formValidator.codBar.errors" class="invalid-feedback">
+                    <div *ngIf="formValidator.codBar.errors.required">* obligatorio</div>
+                </div>
+              </div>
+
+              <div class="col-3">
+                <label>Cantidad</label>
+                <input type="number" formControlName="cantidad" class="form-control"
+                [ngClass]="{ 'is-invalid': formValidatorStatus && formValidator.cantidad.errors }"
+                >
+                <div *ngIf="formValidatorStatus && formValidator.cantidad.errors" class="invalid-feedback">
+                    <div *ngIf="formValidator.cantidad.errors.required">* obligatorio</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <label>Nombre</label>
+                <input type="text" formControlName="nombre" class="form-control"
+                [ngClass]="{ 'is-invalid': formValidatorStatus && formValidator.nombre.errors }"
+                >
+                <div *ngIf="formValidatorStatus && formValidator.nombre.errors" class="invalid-feedback">
+                    <div *ngIf="formValidator.nombre.errors.required">* obligatorio</div>
+                </div>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="col-8">
+                  <label>Imagen</label>
+                  <input type="text" formControlName="imagenUrl" class="form-control"
+                  [ngClass]="{ 'is-invalid': formValidatorStatus && formValidator.imagenUrl.errors }"
+                  >
+                  <div *ngIf="formValidatorStatus && formValidator.imagenUrl.errors" class="invalid-feedback">
+                    <div *ngIf="formValidator.imagenUrl.errors.required">* obligatorio</div>
+                  </div>
+              </div>
+              <div class="col-4">
+                <label>Precio</label>
+                <input type="number" formControlName="precio" class="form-control"
+                [ngClass]="{ 'is-invalid': formValidatorStatus && formValidator.precio.errors }"
+                >
+                <div *ngIf="formValidatorStatus && formValidator.precio.errors" class="invalid-feedback">
+                    <div *ngIf="formValidator.precio.errors.required">* obligatorio</div>
+                </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label>Categoria</label>
+            <ng-template #rt let-r="result" let-t="term">
+              {{ r.nombre}}
+            </ng-template>
+            <input type="text" class="form-control" formControlName="categoria" [ngbTypeahead]="search" 
+            [inputFormatter]="formatter" [resultTemplate]="rt"> 
+          </div>
+          <div class="d-flex flex-row-reverse  py-3">
+            <button type="button" class="btn btn-dark ml-2" (click)="modal.close('Close click')">salir</button>
+            <button type="button" class="btn btn-info" (click)="saveSubmitProducto()">Guardar</button>
+          </div>
+      </form>
+    </div>
+</ng-template>
+  <button class="btn btn-btn btn-secondary" *ngIf="TypeButton == 1" (click)="modalCallService(mdProducto)">{{ nameButton }}</button>
+  <button class="btn btn-primary btn-xs" *ngIf="TypeButton == 2" (click)="modalCallService(mdProducto)"><span class="fas fa-edit"></span></button>

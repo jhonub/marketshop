@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="d-flex justify-content-between">
+        <Form class="form-inline col">
+            <input class="form-control mr-3 w-75" type="text" placeholder="Buscar"
+            aria-label="Buscar">
+            <i class="fas fa-search" aria-hidden="true"></i>
+        </Form>
+        <create-producto [idProducto]="null" [TypeButton]="'1'" [nameButton]="'Crear'" (modifyProducto)="validatorProducto()"></create-producto>
+    </div>
+    <div class="text-center py-5">
+        <h2>Lista de Productos</h2>
+    </div>
+    <div class="table">
+        <table class="table table-bordred table-striped">
+            <thead>
+                <th>Codigo de Barra</th>
+                <th>Cantidad</th>
+                <th>Nombre</th>
+                <th>Imagen</th>
+                <th>Categoria</th>
+                <th>Precio</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let productos of listProductos">
+                    <td>{{ productos.codBar }}</td>
+                    <td>{{ productos.cantidad }}</td>
+                    <td>{{ productos.nombre }}</td>
+                    <td><img [src]="productos.imagenUrl" style="width: 50px;"></td>
+                    <td></td>
+                    <td>{{ productos.precio }}</td>
+                    <td><create-producto [idProducto]="productos._id" [TypeButton]="'2'" (modifyProducto)="validatorProducto()"></create-producto></td>
+                    <td><delete-producto [idProducto]="productos._id" (modifyProducto)="validatorProducto()"></delete-producto></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
